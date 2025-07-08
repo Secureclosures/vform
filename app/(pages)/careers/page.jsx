@@ -1,5 +1,6 @@
 // app/(pages)/careers/page.jsx
-import Careers from "./CareersContent.jsx"; // Client component
+import { Suspense } from "react";
+import Careers from "./CareersContent.jsx";
 
 export const metadata = {
   title: "Careers | Vform Technopack",
@@ -29,5 +30,9 @@ export const metadata = {
 };
 
 export default function CareersPage() {
-  return <Careers />;
+  return (
+    <Suspense fallback={<div>Loading Careers...</div>}>
+      <Careers />
+    </Suspense>
+  );
 }
