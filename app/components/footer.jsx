@@ -67,11 +67,11 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
             <img 
               src="/logo.png" 
-              alt="Vform Technopack company logo featuring a stylized emblem, displayed next to the company name Vform Technopack in bold text, set within a modern office branding environment" 
+              alt="Vform Tecnopacks company logo featuring a stylized emblem, displayed next to the company name Vform Tecnopacks in bold text, set within a modern office branding environment" 
               className="w-16 h-16 object-contain rounded-full" 
             />
           
-          <h3 className="text-2xl font-bold">Vform Technopack</h3>
+          <h3 className="text-2xl font-bold">Vform Tecnopacks</h3>
             </div>
             <p className="text-slate-300 leading-relaxed mb-6">
           Leading manufacturer of precision plastic caps and closures, delivering innovative packaging solutions globally for over 28 years.
@@ -269,7 +269,7 @@ const Footer = () => {
           <div className="container mx-auto px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="text-slate-400 text-sm text-center md:text-left">
-                © {new Date().getFullYear()} Vform Technopack. All rights reserved. | Designed & Developed with precision manufacturing excellence.
+                © {new Date().getFullYear()} Vform Tecnopacks. All rights reserved. | Designed & Developed with precision manufacturing excellence.
               </div>
               
               <div className="flex flex-wrap justify-center gap-6 text-sm">

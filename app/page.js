@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import CompanySection from "./components/about";
 import Footer from "./components/footer";
+import ClientsShowcase from './components/ClientsShowcase';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <CompanySection />
+      <ClientsShowcase />
       <Footer />
     </main>
   );

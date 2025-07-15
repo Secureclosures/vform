@@ -206,7 +206,7 @@ const ServicesPage = () => {
               >
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
                   <HiSparkles className="mr-2" />
-                  Premium Industrial Solutions
+                  Premium LTD
                 </span>
               </motion.div>
 
@@ -246,7 +246,7 @@ const ServicesPage = () => {
                   <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href="#contact"
+                  href="/contact#contactform"
                   className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300"
                 >
                   Get Consultation

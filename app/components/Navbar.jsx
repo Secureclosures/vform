@@ -123,12 +123,12 @@ export default function Navbar() {
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-row items-baseline gap-1">
               <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                Vform Technopacks
+                Vform Tecnopacks
               </span>
               <span className="text-[10px] lg:text-xs text-gray-500 font-medium -mt-1 hidden sm:block">
-                Industrial Solutions
+                LTD
               </span>
             </div>
           </Link>

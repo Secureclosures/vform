@@ -1,12 +1,75 @@
-'use client'
-import { useState, useRef, useEffect } from 'react';
-import Chatbot from '@/app/components/chatbot'; // Import your Chatbot component
+'use client';
 
-const CompanySection = () => {
-  const [activeTab, setActiveTab] = useState('overview');
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  ChevronLeft, ChevronRight, Award, Users, Microscope, Leaf,
+  Target, CheckCircle2, ArrowRight
+} from 'lucide-react';
+
+
+const AboutSection = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const [isVisible, setIsVisible] = useState(false);
-  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const sectionRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const galleryImages = [
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/Production-Area.jpg",
+      title: "Production Area",
+      category: "Manufacturing"
+    },
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/Complete-Lab-facility-1.jpg",
+      title: "Complete Lab Facility",
+      category: "Quality Control"
+    },
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/RESIN-FEEDING-SILOS.jpg",
+      title: "Resin Feeding Silos",
+      category: "Infrastructure"
+    },
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/F.G.-Store.jpg",
+      title: "Finished Goods Store",
+      category: "Storage"
+    },
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/Master-Batch-Liner-Bag-Bopp-Tape-ink-Store.jpg",
+      title: "Raw Materials Store",
+      category: "Storage"
+    },
+    {
+      src: "https://www.secureclosures.com/wp-content/uploads/2019/05/Gardening-Area.jpg",
+      title: "Gardening Area",
+      category: "Environment"
+    }
+  ];
+
+  const values = [
+    {
+      icon: <Target className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Innovation",
+      description: "Pioneering advanced closure solutions through cutting-edge technology and creative engineering."
+    },
+    {
+      icon: <Users className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Cooperation",
+      description: "Building strong partnerships with customers and fostering collaborative teamwork internally."
+    },
+    {
+      icon: <Award className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Excellence",
+      description: "Maintaining the highest standards of perfection and productivity in every product."
+    },
+    {
+      icon: <Leaf className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Sustainability",
+      description: "Committed to sustainable advancement and environmentally responsible manufacturing."
+    }
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,289 +81,285 @@ const CompanySection = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  const tabs = [
-    {
-      id: 'overview',
-      label: 'Company Overview',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      )
-    },
-    {
-      id: 'technology',
-      label: 'Technology',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      )
-    },
-    {
-      id: 'sustainability',
-      label: 'Sustainability',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-        </svg>
-      )
-    },
-    {
-      id: 'quality',
-      label: 'Quality Assurance',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      )
-    }
-  ];
-
-  const tabContent = {
-    overview: {
-      title: "Leading Plastic Cap Manufacturing Excellence",
-      content: [
-        "Founded in 1995, we have grown to become India's premier manufacturer of precision plastic caps and closures, serving over 500+ brands across beverage, pharmaceutical, and cosmetic industries.",
-        "Our state-of-the-art manufacturing facilities span across 5 locations in India, equipped with the latest injection molding technology and automated production lines capable of producing 50 million caps monthly.",
-        "With a team of 1,200+ skilled professionals and engineers, we maintain the highest standards of quality while delivering innovative packaging solutions that meet global industry requirements."
-      ],
-      stats: [
-        { number: "28+", label: "Years Experience" },
-        { number: "500+", label: "Global Clients" },
-        { number: "50M+", label: "Monthly Production" },
-        { number: "99.9%", label: "Quality Rate" }
-      ]
-    },
-    technology: {
-      title: "Advanced Manufacturing Technology",
-      content: [
-        "Our manufacturing ecosystem features cutting-edge injection molding machines with Industry 4.0 capabilities, enabling real-time monitoring and predictive maintenance for optimal efficiency.",
-        "We utilize advanced CAD/CAM systems for rapid prototyping and tooling, reducing product development time by 60% while ensuring precision engineering in every component.",
-        "Our automated quality control systems employ vision inspection technology and statistical process control to maintain zero-defect manufacturing standards."
-      ],
-      stats: [
-        { number: "24/7", label: "Production Hours" },
-        { number: "±0.01mm", label: "Precision Tolerance" },
-        { number: "30+", label: "Molding Machines" },
-        { number: "100%", label: "Automated QC" }
-      ]
-    },
-    sustainability: {
-      title: "Committed to Environmental Responsibility",
-      content: [
-        "We are pioneers in sustainable packaging solutions, using 100% recyclable materials and offering bio-based plastic alternatives that reduce environmental impact without compromising quality.",
-        "Our manufacturing processes are carbon-neutral, powered by renewable energy sources and equipped with advanced waste management systems that achieve zero liquid discharge.",
-        "Through our circular economy initiatives, we help clients transition to sustainable packaging while maintaining cost-effectiveness and superior product performance."
-      ],
-      stats: [
-        { number: "100%", label: "Recyclable Materials" },
-        { number: "0", label: "Liquid Discharge" },
-        { number: "50%", label: "Renewable Energy" },
-        { number: "25%", label: "Bio-based Options" }
-      ]
-    },
-    quality: {
-      title: "Uncompromising Quality Standards",
-      content: [
-        "Our quality management system exceeds international standards with ISO 9001:2015, FDA, and FSSC 22000 certifications, ensuring every product meets stringent global requirements.",
-        "We maintain dedicated clean rooms for pharmaceutical and food-grade applications, with comprehensive testing laboratories equipped with advanced analytical instruments.",
-        "Our quality assurance process includes 15-point inspection protocols, material traceability systems, and continuous improvement programs driven by Six Sigma methodologies."
-      ],
-      stats: [
-        { number: "15", label: "Quality Checkpoints" },
-        { number: "100%", label: "Batch Traceability" },
-        { number: "ISO", label: "Certified Standards" },
-        { number: "6σ", label: "Quality Systems" }
-      ]
-    }
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
   };
 
-  const currentContent = tabContent[activeTab];
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (distance > threshold) nextImage();
+    else if (distance < -threshold) prevImage();
+  };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
-      {/* Background Image and Animated Molecules */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        <img 
-          src="/aboutback.jpg" 
-          alt="About section background" 
-          className="w-full h-full object-cover opacity-20 blur-sm" 
-          draggable="false"
-        />
+    <section ref={sectionRef} className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_35%,rgba(255,255,255,0.1)_50%,transparent_65%)] bg-[length:20px_20px] animate-pulse" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            About Our Company
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6">
-            Precision Manufacturing,
-            <br />
-            <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-              Global Excellence
-            </span>
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Three decades of innovation in plastic cap manufacturing, serving global brands with 
-            sustainable, high-quality solutions that exceed industry standards.
-          </p>
-        </div>
-
-        {/* Tab Navigation */}
-        <div className={`flex flex-wrap justify-center gap-2 mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/25'
-                  : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 hover:border-slate-300'
-              }`}
-            >
-              {tab.icon}
-              <span className="hidden sm:inline">{tab.label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Content Area */}
-        <div className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      {/* Hero Section */}
+      <div className="relative w-full max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-slate-900 mb-6">
-              {currentContent.title}
-            </h3>
-            
+          <div className={`space-y-6 sm:space-y-8 order-2 lg:-mt-50 order-1 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <div className="space-y-4">
-              {currentContent.content.map((paragraph, index) => (
-                <p key={index} className="text-slate-600 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
+              <div className="flex items-center space-x-3">
+                <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
+                <span className="text-cyan-400 font-medium tracking-wider uppercase text-xs sm:text-sm">
+                  About VForm Tecnopacks
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent">
+                  Crafting Excellence
+                </span>
+                <br />
+                <span className="text-white">Since Decades</span>
+              </h2>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="pt-6 flex flex-col sm:flex-row gap-4">
-              <button className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-slate-900/25">
-                <span>Learn More About Us</span>
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-              
-              {/* Chat with Us Button */}
-              <button 
-                onClick={() => setIsChatbotOpen(true)}
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-emerald-500/25"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <span>Chat with Us</span>
-              </button>
-            </div>
+            <p className="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed">
+              We believe in innovation, cooperation, and building the best products. Our technical team addresses every challenge with enthusiasm and curiosity, delivering premium quality plastic closures that exceed expectations.
+            </p>
           </div>
 
-          {/* Right Stats Grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {currentContent.stats.map((stat, index) => (
-              <div
-                key={index}
-                className="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100"
-              >
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-black text-emerald-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {stat.number}
-                  </div>
-                  <div className="text-slate-600 font-medium">
-                    {stat.label}
+          {/* Right Gallery */}
+          <div className={`order-1 lg:order-2 ${isVisible ? 'animate-fadeInRight' : 'opacity-0'}`}>
+            <div
+              className="relative w-full"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              {/* Primary Image Container */}
+              <div className="relative w-auto h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl group cursor-grab">
+                <img
+                  src={galleryImages[currentImageIndex].src}
+                  alt={galleryImages[currentImageIndex].title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+
+                {/* Overlays & Navigation */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevImage}
+                  aria-label="Previous"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/30 backdrop-blur-md rounded-full hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  aria-label="Next"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/30 backdrop-blur-md rounded-full hover:bg-black/50 transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </button>
+
+                {/* Image Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 pointer-events-none">
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <div className="w-4 sm:w-6 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
+                        <span className="text-cyan-400 text-xs sm:text-sm font-medium uppercase tracking-wider">
+                          {galleryImages[currentImageIndex].category}
+                        </span>
+                      </div>
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mt-1">
+                        {galleryImages[currentImageIndex].title}
+                      </h3>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
+                        {String(currentImageIndex + 1).padStart(2, '0')}
+                      </div>
+                      <div className="text-slate-400 text-xs sm:text-sm">
+                        of {String(galleryImages.length).padStart(2, '0')}
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Progress Bar */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-black/30 pointer-events-none">
+                  <div
+                    className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-700"
+                    style={{ width: `${((currentImageIndex + 1) / galleryImages.length) * 100}%` }}
+                  />
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Bottom Features */}
-        <div className={`mt-20 grid md:grid-cols-3 gap-8 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center group">
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-emerald-500/25">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-              </svg>
-            </div>
-            <h4 className="text-xl font-bold text-slate-900 mb-2">Global Reach</h4>
-            <p className="text-slate-600">Serving clients across 28 Indian states and 15+ international markets</p>
-          </div>
+{/* Thumbnails */}
+<div className="hidden sm:block mt-4 sm:mt-6 px-4 sm:px-0">
+  <div
+    className="flex px-2 space-x-3 overflow-x-auto py-2 scrollbar-hide"
+    style={{
+      WebkitOverflowScrolling: 'touch',
+      scrollSnapType: 'x mandatory',
+      touchAction: 'pan-x',
+    }}
+  >
+    {galleryImages.map((img, i) => (
+      <button
+        key={i}
+        onClick={() => setCurrentImageIndex(i)}
+        className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden flex-shrink-0 scroll-snap-align-start transition-all duration-300 focus:outline-none ${
+          i === currentImageIndex
+            ? 'ring-2 ring-cyan-400 scale-105'
+            : 'opacity-60 hover:opacity-90 hover:scale-105'
+        }`}
+      >
+        <img
+          src={img.src}
+          alt={img.title}
+          className="w-full h-full object-cover"
+        />
+      </button>
+    ))}
+  </div>
+</div>
 
-          <div className="text-center group">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/25">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-              </svg>
-            </div>
-            <h4 className="text-xl font-bold text-slate-900 mb-2">Custom Solutions</h4>
-            <p className="text-slate-600">Tailored manufacturing solutions for unique industry requirements</p>
-          </div>
 
-          <div className="text-center group">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/25">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
+              {/* Stats */}
+              <div className="mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4 text-center">
+                {[
+                  ['25k+', 'Sq. Ft. Facility'],
+                  ['ISO', 'Certified'],
+                  ['24/7', 'Operations'],
+                ].map(([value, label], idx) => (
+                  <div
+                    key={idx}
+                    className="bg-slate-800/30 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-slate-700/30 backdrop-blur-sm"
+                  >
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-400">{value}</div>
+                    <div className="text-slate-400 text-xs sm:text-sm">{label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h4 className="text-xl font-bold text-slate-900 mb-2">24/7 Support</h4>
-            <p className="text-slate-600">Round-the-clock technical support and customer service</p>
           </div>
         </div>
       </div>
 
-      {/* Floating Chat Button - Alternative Option */}
-      {!isChatbotOpen && (
-        <div className="fixed bottom-6 right-6 z-40">
-          <button
-            onClick={() => setIsChatbotOpen(true)}
-            className="group bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white p-4 rounded-full shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 transform hover:scale-110 animate-pulse hover:animate-none"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            
-            {/* Tooltip */}
-            <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-              Chat with us
-              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
-            </div>
-          </button>
+      {/* Core Values */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="text-center mb-12 sm:mb-16">
+          <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Core Values</h3>
+          <p className="text-lg sm:text-xl text-slate-400">The principles that drive our excellence</p>
         </div>
-      )}
 
-      {/* Chatbot Component */}
-      <Chatbot 
-        isOpen={isChatbotOpen} 
-        onClose={() => setIsChatbotOpen(false)} 
-      />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {values.map((value, index) => (
+            <div key={index} className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl sm:rounded-2xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-6 sm:p-8 bg-slate-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-slate-700/50 hover:border-cyan-400/50 transition-all duration-500 transform hover:-translate-y-2">
+                <div className="text-cyan-400 mb-3 sm:mb-4">{value.icon}</div>
+                <h4 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{value.title}</h4>
+                <p className="text-sm sm:text-base text-slate-400 leading-relaxed">{value.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
+      {/* Quality Policy */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 sm:mb-12">
+            <div className="flex items-center justify-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
+              <Microscope className="w-8 h-8 sm:w-12 sm:h-12 text-cyan-400" />
+              <h3 className="text-3xl sm:text-4xl font-bold text-white">Quality Policy</h3>
+            </div>
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-6 sm:mb-8"></div>
+          </div>
+
+          <div className="relative p-8 sm:p-12 bg-gradient-to-br from-slate-800/60 to-slate-700/60 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-slate-600/30">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              </div>
+            </div>
+            
+            <blockquote className="text-lg sm:text-xl lg:text-2xl text-cyan-400 font-medium mb-6 sm:mb-8 italic">
+              "Quality is never an accident. It is always the result of intelligent effort"
+            </blockquote>
+            
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6 sm:mb-8">
+              Quality Products and Services are our top priority. We recognize quality as a critical aspect that fuels our growth and success. Our objective is to continuously improve product quality, satisfy customer needs and expectations, while fulfilling our organizational goal of making "Premium Quality Plastic Closures."
+            </p>
+
+            <div className="flex items-center justify-center space-x-2 sm:space-x-3 text-cyan-400">
+              <span className="text-base sm:text-lg font-medium">Learn More About Our Quality Standards</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInRight {
+          animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+      
     </section>
   );
 };
 
-export default CompanySection;
+export default AboutSection;

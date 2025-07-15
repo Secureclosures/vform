@@ -279,7 +279,7 @@ export default function AboutPage() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 lg:mb-12 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight tracking-tight break-words">
-              About <span className="relative text-blue-500">Vform</span> Technopacks
+              About <span className="relative text-blue-500">Vform</span> Tecnopacks
             </h1>
             
             <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-16 lg:mb-20 opacity-90 max-w-5xl mx-auto leading-relaxed font-medium tracking-wide px-4">

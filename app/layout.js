@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Vform Technopack",
+  title: "Vform Tecnopacks",
   description: "Leading manufacturer of high-quality plastic caps and closures.",
   icons: {
     icon: { url: '/favicon.ico', sizes: 'any' }
