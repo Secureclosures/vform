@@ -272,20 +272,27 @@ export default function AboutPage() {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 lg:w-72 lg:h-72 bg-cyan-400 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}}></div>
           </div>
           
-          <div className="relative z-20 text-center max-w-7xl mx-auto w-full">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 lg:px-8 py-3 lg:py-4 mb-8 lg:mb-12 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <Globe className="w-5 h-5 lg:w-6 lg:h-6 mr-2 lg:mr-3" />
-              <span className="text-base lg:text-lg font-semibold tracking-wide">Global Excellence Since 1999</span>
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 lg:mb-12 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight tracking-tight break-words">
-              About <span className="relative text-blue-500">Vform</span> Tecnopacks
-            </h1>
-            
-            <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-16 lg:mb-20 opacity-90 max-w-5xl mx-auto leading-relaxed font-medium tracking-wide px-4">
-              Global leader in premium plastic closure solutions, committed to innovation, quality, and sustainability
-            </p>
-          </div>
+<div className="relative z-20 text-center max-w-7xl mx-auto w-full">
+  <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 lg:px-8 py-3 lg:py-4 mb-8 lg:mb-12 border border-white/20 hover:bg-white/15 transition-all duration-300">
+    <Globe className="w-5 h-5 lg:w-6 lg:h-6 mr-2 lg:mr-3" />
+    <span className="text-base lg:text-lg font-semibold tracking-wide">Global Excellence Since 1999</span>
+  </div>
+
+  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 lg:mb-12 leading-tight tracking-tight break-words">
+    <span className=" text-transparent white-stroke">
+      About
+    </span>{' '}
+    <span className="text-white-500">Vform</span>{' '}
+    <span className=" text-transparent white-stroke">
+      Tecnopacks
+    </span>
+  </h1>
+
+  <p className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-16 lg:mb-20 opacity-90 max-w-5xl mx-auto leading-relaxed font-medium tracking-wide px-4">
+    Global leader in premium plastic closure solutions, committed to innovation, quality, and sustainability
+  </p>
+</div>
+
         </header>
 
         <section className="py-16 lg:py-24 px-4 sm:px-8 md:px-20 lg:px-40 bg-white relative overflow-hidden" aria-labelledby="stats-heading">

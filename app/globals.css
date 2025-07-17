@@ -35,3 +35,9 @@ body {
   from { width: 100%; }
   to { width: 0%; }
 }
+
+.white-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px white;
+}
+

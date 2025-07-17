@@ -15,12 +15,11 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Quality Standards', href: '#quality' },
-    { name: 'Sustainability', href: '#sustainability' },
-    { name: 'Careers', href: '#careers' },
-    { name: 'News & Updates', href: '#news' }
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Products', href: '/products' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Careers', href: '/careers' },
   ];
 
   const industries = [
@@ -86,7 +85,7 @@ const Footer = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
-                    <span className="text-slate-300 text-sm">HEAD OFFICE: Turbhe, Navi Mumbai</span>
+                    <span className="text-slate-300 text-sm">H/O: Turbhe, Navi Mumbai</span>
                   </div>
                   
                   <div className="flex items-center gap-3">

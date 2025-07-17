@@ -7,7 +7,8 @@ const nextConfig = {
       'static.cdnlogo.com',
       '1000logos.net',
       'upload.wikimedia.org',
-      'logos-world.net'
+      'logos-world.net',
+      'www.secureclosures.com',
     ],
   },
 };

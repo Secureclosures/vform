@@ -175,7 +175,7 @@ const ServicesPage = () => {
           className="pb-0 relative overflow-hidden"
         >
           {/* Animated Background */}
-          <div className="absolute inset-0 bg-cover bg-center " style={{ backgroundImage: "url('servicecaps.jpg')" }} />
+          <div className="absolute inset-0 bg-cover bg-center " style={{ backgroundImage: "url('servicecaps.webp')" }} />
 
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 opacity-50" >
             <div className="absolute inset-0 bg-black/20"></div>
@@ -206,7 +206,7 @@ const ServicesPage = () => {
               >
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
                   <HiSparkles className="mr-2" />
-                  Premium LTD
+                  Premium
                 </span>
               </motion.div>
 

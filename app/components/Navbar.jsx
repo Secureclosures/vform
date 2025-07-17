@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Phone, Mail, MapPin, Globe } from 'lucide-react'
+import { ChevronDown, Phone, Mail, MapPin, Globe } from 'lucide-react'
+import { FlaskConical, Droplet, CupSoda, Wine } from 'lucide-react'
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -15,10 +16,10 @@ const navItems = [
     label: 'Products',
     href: '/products',
     children: [
-      { label: 'IMFL', href: '/services/manufacturing' },
-      { label: 'Water Closures', href: '/services/quality-control' },
-      { label: 'Juice Closures', href: '/services/supply-chain' },
-      { label: 'CSD Closures', href: '/services/consulting' },
+      { label: 'IMFL', href: '/products/imfl', icon: Wine },
+      { label: 'Water Closures', href: '/products/water', icon: Droplet },
+      { label: 'Juice Closures', href: '/products/juice', icon: CupSoda },
+      { label: 'CSD Closures', href: '/products/csd', icon: FlaskConical },
     ]
   },
   { label: 'About', href: '/about' },
@@ -127,8 +128,8 @@ export default function Navbar() {
               <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
                 Vform Tecnopacks
               </span>
-              <span className="text-[10px] lg:text-xs text-gray-500 font-medium -mt-1 hidden sm:block">
-                LTD
+              <span className="text-[5px] lg:text-[10px] text-gray-500 font-bold -mt-1 hidden sm:block">
+                .LTD
               </span>
             </div>
           </Link>
@@ -143,11 +144,14 @@ export default function Navbar() {
                     onMouseEnter={() => setActiveDropdown(item.label)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <span className="relative">
-                      {item.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                    </span>
-                    <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                    <Link
+    href={item.href}
+    className="relative"
+  >
+    {item.label}
+    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                     
                     {/* Enhanced dropdown */}
                     <div className={`absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 transition-all duration-300 ${
@@ -183,7 +187,7 @@ export default function Navbar() {
             
             {/* Enhanced CTA button */}
             <Link
-              href="/quote"
+              href="/contact"
               className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-7 py-2.5 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Get Quote

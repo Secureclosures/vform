@@ -51,6 +51,8 @@ const formSchema = {
   },
 };
 
+
+
 // Multiple office locations
 const officeLocations = [
   {
@@ -124,38 +126,51 @@ export default function ContactContent() {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(officeLocations.find(loc => loc.isDefault));
 
-  // Form submission handler
-  const onSubmit = useCallback(async (data) => {
-    try {
-      setSubmitStatus('submitting');
-      
-      const formData = {
-        ...data,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-        page: 'contact'
-      };
+const onSubmit = useCallback(async (data) => {
+  try {
+    setSubmitStatus('submitting');
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+    // Add metadata to the form data
+    const formData = {
+      ...data,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      page: 'contact'
+    };
 
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
       setSubmitStatus('success');
-      toast.success('Message sent successfully! We\'ll get back to you soon.', { 
+      toast.success('Message sent successfully! We\'ll get back to you soon.', {
         duration: 5000,
-        position: 'top-right'
+        position: 'top-right',
       });
-      reset();
-      setIsModalOpen(true);
-      
-    } catch (error) {
-      console.error('Contact form error:', error);
+      reset();           // Clear the form
+      setIsModalOpen(true);  // Open modal if needed
+    } else {
       setSubmitStatus('error');
-      toast.error('Failed to send message. Please try again or contact us directly.', { 
+      toast.error(result.error || 'Submission failed.', {
         duration: 5000,
-        position: 'top-right'
+        position: 'top-right',
       });
     }
-  }, [reset]);
+  } catch (error) {
+    console.error('Contact form error:', error);
+    setSubmitStatus('error');
+    toast.error('Failed to send message. Please try again or contact us directly.', {
+      duration: 5000,
+      position: 'top-right',
+    });
+  }
+}, [reset]);
+
 
   // Animation variants
   const containerVariants = {
