@@ -118,7 +118,7 @@ const AboutSection = () => {
       <div className="relative w-full max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className={`space-y-6 sm:space-y-8 order-2 lg:-mt-50 order-1 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
+          <div className={`space-y-6 sm:space-y-8 lg:-mt-50 order-1 ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
