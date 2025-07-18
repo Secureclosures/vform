@@ -1,4 +1,4 @@
-import WaterClosuresPage from "./Watercontent";
+import WaterClosuresPage from "./watercontent";
 
 export const metadata = {
   title: "Water | Vform Tecnopacks",

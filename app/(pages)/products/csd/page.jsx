@@ -1,5 +1,5 @@
 // app/(pages)/CSD/page.jsx
-import CSDClosuresPage from "./CSDContent";
+import CSDClosuresPage from "./csdcontent";
 
 export const metadata = {
   title: "CSD | Vform Tecnopacks",
