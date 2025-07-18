@@ -88,14 +88,24 @@ export default function Navbar() {
                 <span className="font-medium truncate">admin@vform.in</span>
               </a>
 
-              <div className="flex items-center gap-2 hover:text-blue-300 transition-colors cursor-pointer">
+              <div className="flex items-center gap-2 hover:text-blue-300 transition-colors cursor-pointer"
+                onClick={() => window.open('tel:+918657533268', '_blank')}
+                role="button"
+                tabIndex={0}
+                aria-label="Call phone number"
+              >
                 <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                 <span className="font-medium">+91-8657533268</span>
               </div>
             </div>
             
             {/* Shown on sm and up */}
-            <div className="hidden sm:flex items-center gap-2 text-xs sm:text-sm hover:text-blue-300 transition-colors cursor-pointer">
+            <div className="hidden sm:flex items-center gap-2 text-xs sm:text-sm hover:text-blue-300 transition-colors cursor-pointer"
+              onClick={() => window.open('https://maps.app.goo.gl/NNvxynoTXZUbPQ2a9', '_blank')}
+              role="button"
+              tabIndex={0}
+              aria-label="Open map location"
+            >
               <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               <span className="font-medium">Turbhe, Navi Mumbai</span>
             </div>
