@@ -1,4 +1,4 @@
-import Juicecontent from "./juicecontent";
+import JuiceClosuresPage from "./juicecontent";
 
 export const metadata = {
   title: "juice | Vform Tecnopacks",
@@ -36,5 +36,5 @@ export const metadata = {
 };
 
 export default function JuicePage() {
-  return <Juicecontent />;
+  return <JuiceClosuresPage />;
 }

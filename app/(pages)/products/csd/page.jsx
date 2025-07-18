@@ -1,5 +1,5 @@
 // app/(pages)/CSD/page.jsx
-import CSDContent from "./CSDContent";
+import CSDClosuresPage from "./CSDContent";
 
 export const metadata = {
   title: "CSD | Vform Tecnopacks",
@@ -37,5 +37,5 @@ export const metadata = {
 };
 
 export default function CSDPage() {
-  return <CSDContent />;
+  return <CSDClosuresPage />;
 }

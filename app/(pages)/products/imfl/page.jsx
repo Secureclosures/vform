@@ -1,4 +1,4 @@
-import IMFLcontent from "./imflcontent";
+import IMFLPage from "./imflcontent";
 
 export const metadata = {
   title: "imfl | Vform Tecnopacks",
@@ -35,6 +35,6 @@ export const metadata = {
   },
 };
 
-export default function IMFLPage() {
-  return <IMFLcontent />;
+export default function IMFLPages() {
+  return <IMFLPage />;
 }
