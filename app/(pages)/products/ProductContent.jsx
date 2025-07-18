@@ -37,7 +37,7 @@ const featuredProducts = [
 	{
 		name: "28mm 3-Piece Cap",
 		desc: "Industry-standard closure for water and soft drink bottles, with advanced tamper-evidence.",
-		image: "/servicecaps.jpg",
+		image: "/servicecaps.webp",
 	},
 	{
 		name: "29/21 Juice Cap",

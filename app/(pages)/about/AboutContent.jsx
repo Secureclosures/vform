@@ -131,7 +131,7 @@ const COMPANY_DATA = {
   stats: [
     { label: "Years Excellence", value: 25, suffix: "+", icon: Sparkles },
     { label: "Global Clients", value: 500, suffix: "+", icon: Users },
-    { label: "Countries", value: 30, suffix: "+", icon: Globe },
+    { label: "States", value: 28, suffix: "", icon: Globe },
     { label: "Products Made", value: 50, suffix: "M+", icon: TrendingUp }
   ],
   

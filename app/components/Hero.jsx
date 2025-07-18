@@ -9,6 +9,8 @@ const DEFAULT_SLIDES = [
     subtitle: "Precision-Engineered Plastic Closures for Beverages and Juices",
     ctaText: "Explore Products",
     ctaSecondary: "Watch Demo",
+    ctaLink: "/products",
+    ctaSecondaryLink: "/products",
     stats: { number: "50M+", label: "Caps Monthly" },
     features: ["FDA Approved", "ISO Certified", "Custom Colors"],
     metrics: {
@@ -23,6 +25,8 @@ const DEFAULT_SLIDES = [
     subtitle: "Cutting-Edge Injection Molding for Flawless Cap Production",
     ctaText: "See Technology",
     ctaSecondary: "Get Quote",
+    ctaLink: "/products",
+    ctaSecondaryLink: "/products",
     stats: { number: "99.9%", label: "Quality Rate" },
     features: ["24/7 Production", "Quality Control", "Fast Delivery"],
     metrics: {
@@ -37,6 +41,8 @@ const DEFAULT_SLIDES = [
     subtitle: "Recyclable and Sustainable – Designed with the Planet in Mind",
     ctaText: "Go Green",
     ctaSecondary: "Learn More",
+    ctaLink: "/products",
+    ctaSecondaryLink: "/products",
     stats: { number: "100%", label: "Recyclable" },
     features: ["Carbon Neutral", "Bio-based Options", "Circular Economy"],
     metrics: {
@@ -51,6 +57,8 @@ const DEFAULT_SLIDES = [
     subtitle: "Trusted by Global Brands for Reliability and Exceptional Service",
     ctaText: "Partner Now",
     ctaSecondary: "View Network",
+    ctaLink: "/products",
+    ctaSecondaryLink: "/products",
     stats: { number: "28", label: "Indian States" },
     features: ["Global Reach", "24/7 Support", "Competitive Pricing"],
     metrics: {
@@ -327,13 +335,14 @@ function Hero({
 
           {/* CTA Buttons - Updated colors */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full md:w-auto justify-center md:justify-start">
-            <button
-              onClick={handleCtaClick(currentSlideData, currentSlide)}
+            <a
+              href={currentSlideData.ctaLink}
               className={`group relative px-6 py-3 md:px-8 md:py-4 font-semibold rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 shadow-xl text-sm md:text-base ${
                 currentSlideData.ctaText === "Go Green" 
                   ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white focus:ring-emerald-500/50 hover:shadow-emerald-500/25"
                   : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white focus:ring-blue-500/50 hover:shadow-blue-500/25"
               }`}
+              aria-label={currentSlideData.ctaText}
             >
               <span className="relative z-10">{currentSlideData.ctaText}</span>
               <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
@@ -341,13 +350,14 @@ function Hero({
                   ? "bg-gradient-to-r from-emerald-400 to-emerald-500"
                   : "bg-gradient-to-r from-blue-400 to-blue-500"
               }`} />
-            </button>
-            <button
-              onClick={handleCtaClick(currentSlideData, currentSlide, true)}
+            </a>
+            <a
+              href={currentSlideData.ctaSecondaryLink}
               className="px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/25 text-sm md:text-base"
+              aria-label={currentSlideData.ctaSecondary}
             >
               {currentSlideData.ctaSecondary}
-            </button>
+            </a>
           </div>
         </div>
 
